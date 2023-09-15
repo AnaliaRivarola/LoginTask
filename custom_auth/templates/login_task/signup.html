@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>Registrar usuario</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Inscripción">
+</form>
+{% endblock %}
+
+<nav>
+    <ul>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'blog:index' %}">Lista de blogs</a></li>
+      <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+      <li><a href="{% url 'signup' %}">Registrar usuario</a></li>    <!-- Apéndice -->
+      {% endif %}
+    </ul>
+  </nav>
